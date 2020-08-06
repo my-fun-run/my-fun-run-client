@@ -5,16 +5,24 @@
   xmlns:tools="http://schemas.android.com/tools"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
+  android:background="@drawable/home_screen_image"
   tools:context=".controller.HomeFragment">
 
 
   <TextView
-    android:id="@+id/textview_first"
+    android:id="@+id/welcome_text"
+    style="@style/TitleText"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:text="@string/title_home"
-    app:layout_constraintEnd_toEndOf="parent"
+    android:layout_margin="@dimen/margin_dimens"
+    android:layout_marginTop="552dp"
+    android:text="@string/welcome_runner"
+    android:textColor="@android:color/holo_red_dark"
+    android:textSize="@dimen/text_size"
+    app:layout_constraintVertical_bias="0.9"
+    app:layout_constraintHorizontal_bias="0.2"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toTopOf="parent"
-    />
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

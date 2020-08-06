@@ -1,7 +1,9 @@
 ## Build Instructions
 
 
-* Refer to Github repository for project at https://github.com/christie274/my-fun-run.
+* Refer to Github repository for project at https://github.com/my-fun-run/my-fun-run-client.
+* Refer to Github repository for project at https://github.com/my-fun-run/funrun-service.
+* Repeat the following steps for each repository:
 * Click on the green Code button.
 * Ensure that Clone with SSH is selected.
 * If HTTPS is selected, click on SSH in the upper right-hand corner of dialog box.

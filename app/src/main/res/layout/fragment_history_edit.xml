@@ -12,7 +12,7 @@
     android:padding="8dp">
 
     <Spinner
-      android:id="@+id/race"
+      android:id="@+id/race_spinner"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:layout_margin="8dp"
@@ -81,7 +81,7 @@
       app:layout_constraintWidth_percent="0.4"
       app:layout_constraintHorizontal_chainStyle="spread_inside">
 
-      <com.google.android.material.textfield.TextInputEditText
+      <TextView
         android:id="@+id/pace"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

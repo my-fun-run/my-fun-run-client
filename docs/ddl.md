@@ -14,7 +14,7 @@ CREATE TABLE IF NOT EXISTS `${TABLE_NAME}`
     `user_id`  INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
     `history_id` INTEGER,
     `race_id`  INTEGER, 
-    FOREIGN KEY (`user_id`) REFERENCES `History` (`race_id`) ON UPDATE NO ACTION ON DELETE SET NULL
+    FOREIGN KEY (`user_id`) REFERENCES `History` (`name`) ON UPDATE NO ACTION ON DELETE SET NULL
 );
 
 CREATE INDEX IF NOT EXISTS `index_MyFunRun_history_id` ON `${TABLE_NAME}` (`history_id`);

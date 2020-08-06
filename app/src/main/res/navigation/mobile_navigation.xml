@@ -7,7 +7,7 @@
 
   <fragment
     android:id="@+id/navigation_home"
-    android:label="@string/title_home"
+    android:label="@string/my_fun_run"
     android:name="edu.cnm.deepdive.myfunrun.controller.HomeFragment"
     tools:layout="@layout/fragment_home">
 
