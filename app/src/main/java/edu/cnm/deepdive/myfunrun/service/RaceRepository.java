@@ -51,7 +51,7 @@ public class RaceRepository {
   }
 
   public Completable refresh(String idToken) {
-    return backendService.getRaces(idToken)
+    return backendService.getRaces(getHeader(idToken))
         .subscribeOn(Schedulers.from(networkPool))
         .flatMap((races) -> raceDao.insert(races))
         .subscribeOn(Schedulers.io())

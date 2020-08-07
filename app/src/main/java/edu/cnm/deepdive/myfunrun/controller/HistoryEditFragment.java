@@ -183,17 +183,20 @@ public class HistoryEditFragment extends DialogFragment implements TextWatcher, 
 
   private void updatePace() {
     long elapsed = endCalendar.getTimeInMillis() - startCalendar.getTimeInMillis();
-    String distanceInput = this.distance.getText().toString().trim();
-    if (distanceInput.isEmpty()){
-      this.pace.setText("");
-
-    } else{
-      try {
-        int distance = (int) (1000 * numberFormat.parse(distanceInput).doubleValue());
-        this.pace.setText(getString(R.string.pace_format, distance * 3600.0 / elapsed));
-      } catch (ParseException e) {
+    if (elapsed > 0 ) {
+      String distanceInput = this.distance.getText().toString().trim();
+      if (distanceInput.isEmpty()) {
         this.pace.setText("");
+      } else {
+        try {
+          int distance = (int) (1000 * numberFormat.parse(distanceInput).doubleValue());
+          this.pace.setText(getString(R.string.pace_format, distance * 3600.0 / elapsed));
+        } catch (ParseException e) {
+          this.pace.setText("");
+        }
       }
+    } else {
+      this.pace.setText("");
     }
   }
 
