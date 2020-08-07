@@ -43,6 +43,7 @@ public class HistoryViewModel extends AndroidViewModel implements LifecycleObser
     throwable = new MutableLiveData<>();
     pending = new CompositeDisposable();
     signInService = GoogleSignInService.getInstance();
+    refreshHistory();
   }
 
   /**

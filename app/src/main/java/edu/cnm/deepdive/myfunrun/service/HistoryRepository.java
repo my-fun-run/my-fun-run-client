@@ -71,7 +71,7 @@ public class HistoryRepository {
   }
 
   public Completable refresh(String idToken) {
-    return backendService.getAllHistories(idToken)
+    return backendService.getAllHistories(getHeader(idToken))
         .subscribeOn(Schedulers.from(networkPool))
         .flatMap((histories) -> {
           histories.forEach((h) -> {

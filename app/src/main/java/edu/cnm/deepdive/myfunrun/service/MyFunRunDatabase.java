@@ -81,7 +81,7 @@ public abstract class MyFunRunDatabase extends RoomDatabase {
 
     private static final MyFunRunDatabase INSTANCE =
         Room.databaseBuilder(context, MyFunRunDatabase.class, DB_NAME)
-            .addCallback(new Callback(context))
+        //    .addCallback(new Callback(context))
             .build();
 
   }
