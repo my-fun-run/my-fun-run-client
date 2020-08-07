@@ -23,6 +23,7 @@ import android.view.ViewGroup;
 
 import edu.cnm.deepdive.myfunrun.R;
 import edu.cnm.deepdive.myfunrun.model.entity.Race;
+import edu.cnm.deepdive.myfunrun.model.pojo.HistoryWithDetails;
 import edu.cnm.deepdive.myfunrun.viewmodel.HistoryViewModel;
 import edu.cnm.deepdive.myfunrun.viewmodel.RaceViewModel;
 import java.text.DateFormat;
@@ -41,7 +42,7 @@ public class HistoryEditFragment extends DialogFragment implements TextWatcher, 
   private static final String ID_KEY = "id";
 
   private long historyId;
-  private History history;
+  private HistoryWithDetails history;
   private View root;
   private AlertDialog dialog;
   private HistoryViewModel historyViewModel;
@@ -75,7 +76,7 @@ public class HistoryEditFragment extends DialogFragment implements TextWatcher, 
   public void onCreate(@Nullable Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     historyId = getArguments().getLong(ID_KEY, 0);
-    history = new History();
+    history = new HistoryWithDetails();
   }
 
   @NonNull
@@ -210,6 +211,7 @@ public class HistoryEditFragment extends DialogFragment implements TextWatcher, 
     try {
       history.setDistance(
           (int) Math.round(1000 * numberFormat.parse(distance.getText().toString().trim()).doubleValue()));
+
     } catch (ParseException e) {
       // do nothing
     }
@@ -218,8 +220,10 @@ public class HistoryEditFragment extends DialogFragment implements TextWatcher, 
     Race race = (Race) raceSpinner.getSelectedItem();
     if (race.getId() == 0) {
       history.setRaceId(null);
+      history.setRace(null);
     } else {
       history.setRaceId(race.getId());
+      history.setRace(race);
     }
     historyViewModel.save(history);
 

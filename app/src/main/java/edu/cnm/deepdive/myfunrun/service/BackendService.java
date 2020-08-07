@@ -4,7 +4,9 @@ import com.facebook.stetho.inspector.network.SimpleBinaryInspectorWebSocketFrame
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import edu.cnm.deepdive.myfunrun.BuildConfig;
+import edu.cnm.deepdive.myfunrun.model.entity.History;
 import edu.cnm.deepdive.myfunrun.model.entity.Race;
+import edu.cnm.deepdive.myfunrun.model.pojo.HistoryWithDetails;
 import io.reactivex.Completable;
 import io.reactivex.Single;
 import java.util.List;
@@ -23,20 +25,34 @@ import retrofit2.http.Path;
 
 public interface BackendService {
 
-  @GET("races")
+  @GET("events")
   Single<List<Race>> getRaces(@Header("Authorization") String authHeader);
 
-  @GET("races/{id}")
+  @GET("events/{id}")
   Single<Race> getRace(@Header("Authorization") String authHeader, @Path("id") long id );
 
-  @POST("races")
+  @POST("events")
   Single<Race> postRace(@Header("Authorization") String authHeader, @Body Race race);
 
-  @PUT("races/{id}")
+  @PUT("events/{id}")
   Single<Race> updateRace(@Header("Authorization") String authHeader, @Path("id") long id, @Body Race race );
 
-  @DELETE("races/{id}")
+  @DELETE("events/{id}")
   Completable deleteRace(@Header("Authorization") String authHeader, @Path("id") long id );
+
+  @GET("histories")
+  Single<List<HistoryWithDetails>> getAllHistories(@Header("Authorization") String authHeader);
+
+  @GET("histories/{id}")
+  Single<HistoryWithDetails> getHistory(@Header("Authorization") String authHeader,  @Path("id") long id );
+
+  @POST("histories")
+  Single<HistoryWithDetails> postHistory(@Header("Authorization") String authHeader, @Body HistoryWithDetails history);
+
+  @PUT("histories/{id}")
+  Single<HistoryWithDetails> putHistory(@Header("Authorization") String authHeader, @Body HistoryWithDetails history, @Path("id") long id );
+
+
 
   static BackendService getInstance() {
     return InstanceHolder.INSTANCE;
@@ -49,6 +65,7 @@ public interface BackendService {
     static {
       Gson gson = new GsonBuilder()
           .excludeFieldsWithoutExposeAnnotation()
+          .setDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ")
           .create();
       HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
       interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);

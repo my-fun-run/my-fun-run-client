@@ -77,7 +77,7 @@ public class RaceViewModel extends AndroidViewModel implements LifecycleObserver
    *
    * @param id the id
    */
-  public void setRaceId(long id){
+  public void setRaceId(long id) {
     throwable.setValue(null);
     pending.add(
         raceRepository.get(id)
@@ -89,7 +89,7 @@ public class RaceViewModel extends AndroidViewModel implements LifecycleObserver
   }
 
   @OnLifecycleEvent(Event.ON_STOP)
-  private void clearPending(){
+  private void clearPending() {
     pending.clear();
   }
 
@@ -102,7 +102,8 @@ public class RaceViewModel extends AndroidViewModel implements LifecycleObserver
     refreshAndExecute((account) ->
         raceRepository.save(account.getIdToken(), race)
             .subscribe(
-                () -> {},
+                () -> {
+                },
                 (throwable) -> this.throwable.postValue(throwable)
             )
     );
@@ -113,31 +114,37 @@ public class RaceViewModel extends AndroidViewModel implements LifecycleObserver
    *
    * @param race the race
    */
-  public void delete (Race race) {
+  public void delete(Race race) {
     refreshAndExecute((account) ->
         raceRepository.delete(account.getIdToken(), race)
             .subscribe(
-                () -> {},
+                () -> {
+                },
                 (throwable) -> this.throwable.postValue(throwable)
             )
     );
   }
+
   private void refreshRaces() {
     refreshAndExecute((account) ->
         raceRepository.refresh(account.getIdToken())
             .subscribe(
-                () -> {},
+                () -> {
+                },
                 (throwable) -> this.throwable.postValue(throwable)
             )
     );
   }
+
   private void refreshAndExecute(AuthenticatedTask task) {
     throwable.setValue(null);
     signInService.refresh()
         .addOnSuccessListener((account) -> pending.add(task.execute(account)))
         .addOnFailureListener(throwable::postValue);
   }
+
   public interface AuthenticatedTask {
+
     Disposable execute(GoogleSignInAccount account);
 
   }

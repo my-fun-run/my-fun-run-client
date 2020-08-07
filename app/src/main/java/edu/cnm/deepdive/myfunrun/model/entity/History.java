@@ -1,20 +1,19 @@
 package edu.cnm.deepdive.myfunrun.model.entity;
 
 
-
-
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
+import com.google.gson.annotations.Expose;
 import java.util.Date;
 import javax.annotation.Nonnull;
 
 
 /**
- * This entity class contains static methods, with convenience annotations,
- * which provides additional information about history to assist Hibernate in mapping
- * an entity class field to a table column in a Apache Derby database, and retrieved.
+ * This entity class contains static methods, with convenience annotations, which provides
+ * additional information about history to assist Hibernate in mapping an entity class field to a
+ * table column in a Apache Derby database, and retrieved.
  */
 @Entity(
     foreignKeys = {
@@ -27,27 +26,32 @@ import javax.annotation.Nonnull;
             entity = User.class,
             parentColumns = "user_id",
             childColumns = "user_id",
-            onDelete = ForeignKey.CASCADE)
-    } )
+            onDelete = ForeignKey.SET_NULL)
+    })
 
 public class History {
 
+  @Expose
   @PrimaryKey(autoGenerate = true)
   @ColumnInfo(name = "history_id")
   private long id;
 
-@ColumnInfo(name = "user_id", index = true)
-  private long userId;
+  @ColumnInfo(name = "user_id", index = true)
+  private Long userId;
 
-@ColumnInfo(name = "race_id", index = true)
-private Long raceId;
 
+  @ColumnInfo(name = "race_id", index = true)
+  private Long raceId;
+
+  @Expose
   @ColumnInfo(name = "distance", index = true)
   private int distance;
 
+  @Expose
   @Nonnull
   private Date start;
 
+  @Expose
   @Nonnull
   private Date end;
 
@@ -65,7 +69,7 @@ private Long raceId;
    *
    * @param id the id
    */
-  public void setId(long id) {
+  public void setId(Long id) {
     this.id = id;
   }
 
@@ -74,7 +78,7 @@ private Long raceId;
    *
    * @return the user id
    */
-  public long getUserId() {
+  public Long getUserId() {
     return userId;
   }
 
@@ -83,7 +87,7 @@ private Long raceId;
    *
    * @param userId the user id
    */
-  public void setUserId(long userId) {
+  public void setUserId(Long userId) {
     this.userId = userId;
   }
 
@@ -168,5 +172,5 @@ private Long raceId;
    */
   public double getPace() {
     return distance * 3600.0 / (end.getTime() - start.getTime());
-}
+  }
 }

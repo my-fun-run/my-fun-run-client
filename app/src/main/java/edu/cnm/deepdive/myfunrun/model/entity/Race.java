@@ -6,6 +6,8 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.Index;
 import androidx.room.PrimaryKey;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
 /**
  *  This entity class contains static methods, with convenience annotations,
@@ -17,10 +19,13 @@ import androidx.room.PrimaryKey;
 )
 public class Race {
 
+  @Expose
   @PrimaryKey(autoGenerate = true)
   @ColumnInfo(name = "race_id")
   private long id;
 
+  @Expose
+  @SerializedName("displayName")
   private String name;
 
   /**

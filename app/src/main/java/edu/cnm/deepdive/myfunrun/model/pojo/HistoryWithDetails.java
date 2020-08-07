@@ -2,6 +2,8 @@ package edu.cnm.deepdive.myfunrun.model.pojo;
 
 import androidx.annotation.NonNull;
 import androidx.room.Relation;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 import edu.cnm.deepdive.myfunrun.model.entity.History;
 import edu.cnm.deepdive.myfunrun.model.entity.Race;
 import edu.cnm.deepdive.myfunrun.model.entity.User;
@@ -11,10 +13,12 @@ import edu.cnm.deepdive.myfunrun.model.entity.User;
  */
 public class HistoryWithDetails extends History {
 
-
+  @Expose
+  @SerializedName("event")
   @Relation(entity = Race.class, entityColumn = "race_id", parentColumn = "race_id")
   private Race race;
 
+  @Expose
   @Relation(entity = User.class, entityColumn = "user_id", parentColumn = "user_id")
   private User user;
 

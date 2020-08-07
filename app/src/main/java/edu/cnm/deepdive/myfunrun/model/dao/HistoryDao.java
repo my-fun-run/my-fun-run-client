@@ -47,7 +47,7 @@ public interface HistoryDao {
    * @return the single
    */
   @Insert(onConflict = OnConflictStrategy.IGNORE)
-  Single<List<Long>> insert(Collection<History> histories);
+  Single<List<Long>> insert(Collection<? extends History> histories);
 
   /**
    * Update single.

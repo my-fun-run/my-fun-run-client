@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 2,
-    "identityHash": "8f00f9ae215ea8c3193b9d5621725b61",
+    "identityHash": "9be49e14b34e9129ad8a8fccf794d7b8",
     "entities": [
       {
         "tableName": "Race",
@@ -41,13 +41,13 @@
       },
       {
         "tableName": "User",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`user_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `display_name` TEXT NOT NULL, `skill_level` INTEGER NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`user_id` INTEGER PRIMARY KEY AUTOINCREMENT, `display_name` TEXT NOT NULL, `skill_level` INTEGER NOT NULL)",
         "fields": [
           {
             "fieldPath": "id",
             "columnName": "user_id",
             "affinity": "INTEGER",
-            "notNull": true
+            "notNull": false
           },
           {
             "fieldPath": "displayName",
@@ -90,7 +90,7 @@
       },
       {
         "tableName": "History",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`history_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `user_id` INTEGER NOT NULL, `race_id` INTEGER, `distance` INTEGER NOT NULL, `start` INTEGER, `end` INTEGER, FOREIGN KEY(`race_id`) REFERENCES `Race`(`race_id`) ON UPDATE NO ACTION ON DELETE SET NULL , FOREIGN KEY(`user_id`) REFERENCES `User`(`user_id`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`history_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `user_id` INTEGER, `race_id` INTEGER, `distance` INTEGER NOT NULL, `start` INTEGER, `end` INTEGER, FOREIGN KEY(`race_id`) REFERENCES `Race`(`race_id`) ON UPDATE NO ACTION ON DELETE SET NULL , FOREIGN KEY(`user_id`) REFERENCES `User`(`user_id`) ON UPDATE NO ACTION ON DELETE SET NULL )",
         "fields": [
           {
             "fieldPath": "id",
@@ -102,7 +102,7 @@
             "fieldPath": "userId",
             "columnName": "user_id",
             "affinity": "INTEGER",
-            "notNull": true
+            "notNull": false
           },
           {
             "fieldPath": "raceId",
@@ -175,7 +175,7 @@
           },
           {
             "table": "User",
-            "onDelete": "CASCADE",
+            "onDelete": "SET NULL",
             "onUpdate": "NO ACTION",
             "columns": [
               "user_id"
@@ -188,7 +188,7 @@
       },
       {
         "tableName": "Comment",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`comment_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `author_id` INTEGER NOT NULL, `history_id` INTEGER NOT NULL, `date` INTEGER, `text` TEXT, FOREIGN KEY(`author_id`) REFERENCES `User`(`user_id`) ON UPDATE NO ACTION ON DELETE CASCADE , FOREIGN KEY(`history_id`) REFERENCES `History`(`history_id`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`comment_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `author_id` INTEGER, `history_id` INTEGER NOT NULL, `date` INTEGER, `text` TEXT, FOREIGN KEY(`author_id`) REFERENCES `User`(`user_id`) ON UPDATE NO ACTION ON DELETE CASCADE , FOREIGN KEY(`history_id`) REFERENCES `History`(`history_id`) ON UPDATE NO ACTION ON DELETE CASCADE )",
         "fields": [
           {
             "fieldPath": "id",
@@ -200,7 +200,7 @@
             "fieldPath": "authorId",
             "columnName": "author_id",
             "affinity": "INTEGER",
-            "notNull": true
+            "notNull": false
           },
           {
             "fieldPath": "historyId",
@@ -274,7 +274,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '8f00f9ae215ea8c3193b9d5621725b61')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '9be49e14b34e9129ad8a8fccf794d7b8')"
     ]
   }
 }

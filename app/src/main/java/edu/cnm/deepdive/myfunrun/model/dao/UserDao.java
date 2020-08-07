@@ -85,6 +85,6 @@ public interface UserDao {
    */
   @Transaction
   @Query("SELECT * FROM User WHERE user_id = :userId")
-  Single<UserWithHistory> selectById(long userId);
+  Single<UserWithHistory> selectById(Long userId);
 
 }

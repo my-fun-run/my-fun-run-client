@@ -26,7 +26,7 @@ public class Comment  {
   private long id;
 
   @ColumnInfo(name = "author_id", index = true)
-  private long authorId;
+  private Long authorId;
 
   @ColumnInfo(name = "history_id", index = true)
   private long historyId;
@@ -43,11 +43,11 @@ public class Comment  {
     this.id = id;
   }
 
-  public long getAuthorId() {
+  public Long getAuthorId() {
     return authorId;
   }
 
-  public void setAuthorId(long authorId) {
+  public void setAuthorId(Long authorId) {
     this.authorId = authorId;
   }
 
